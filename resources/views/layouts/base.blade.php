@@ -75,13 +75,13 @@
                                                 <a title="My account" href="#">My account ({{Auth::user()->name}})<i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                                 <ul class="submenu curency" >
                                                     <li class="menu-item" >
-                                                        <a title="Dashboard" href="{{route("admin.dashboard")}}">Dashboard</a>
+                                                        <a title="Dashboard" href="{{route('admin.dashboard')}}">Dashboard</a>
                                                     </li>
-                                                    <form action="{{route("logout")}}" method="post">
-                                                        @csrf
-                                                        <li class="menu-item">
+													<li class="menu-item">
                                                             <button>Logout</button>
                                                         </li>
+                                                    <form action="{{route('logout')}}" method="post">
+                                                        @csrf
                                                     </form>
 
                                                 </ul>
@@ -91,9 +91,9 @@
                                                 <a title="My account" href="#">My account ({{Auth::user()->name}})<i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                                 <ul class="submenu curency" >
                                                     <li class="menu-item" >
-                                                        <a title="Dashboard" href="{{route("user.dashboard")}}">Dashboard</a>
+                                                        <a title="Dashboard" href="{{route('user.dashboard')}}">Dashboard</a>
                                                     </li>
-                                                    <form action="{{route("logout")}}" method="post">
+                                                    <form action="{{route('logout')}}" method="post">
                                                         @csrf
                                                         <li class="menu-item">
                                                             <button>Logout</button>
