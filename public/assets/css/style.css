@@ -7163,3 +7163,10 @@ background-color: #888888;
     color: red;
 }
 
+nav svg{
+    height: 20px;
+}
+
+nav .hidden{
+    display: block !important;
+}
