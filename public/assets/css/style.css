@@ -7170,3 +7170,11 @@ nav svg{
 nav .hidden{
     display: block !important;
 }
+
+.adminAddCategoryForm *{
+    margin: 0 auto;
+}
+
+.adminAddCategoryForm  input{
+    width: 25vw !important;
+}
