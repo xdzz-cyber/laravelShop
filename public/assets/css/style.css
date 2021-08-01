@@ -7178,3 +7178,7 @@ nav .hidden{
 .adminAddCategoryForm  input{
     width: 25vw !important;
 }
+
+.adminProductsPageSingleItemImage{
+    width: 5vw;
+}
