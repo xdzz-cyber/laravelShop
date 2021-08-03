@@ -84,6 +84,9 @@
                                                     <li class="menu-item">
                                                         <a title="Products" href="{{route('admin.products')}}">All products</a>
                                                     </li>
+                                                    <li class="menu-item">
+                                                        <a title="Manage home slider" href="{{route('admin.homeSlider')}}">Manage home slider</a>
+                                                    </li>
 													<li class="menu-item">
                                                             <button>Logout</button>
                                                         </li>
