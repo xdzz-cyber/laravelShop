@@ -7186,3 +7186,15 @@ nav .hidden{
 .AdminHomeSliderSingleImage{
     width: 7vw;
 }
+
+.onSaleProductsPriceContainer > p{
+    margin-left: 8%!important;
+}
+
+.regprice{
+    font-weight: 300;
+    font-size: 13px !important;
+    color: #aaa !important;
+    text-decoration: line-through;
+    padding-left: 10px;
+}
