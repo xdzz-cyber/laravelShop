@@ -14,10 +14,14 @@ class ShopComponent extends Component
 
     public $sorting;
     public $pageSize;
+    public $min_price;
+    public $max_price;
 
     public function mount(){
         $this->sorting = "default";
         $this->pageSize = 12;
+        $this->min_price = 1;
+        $this->max_price = 1000;
     }
 
     public function store($product_id, $product_name, $product_price){
@@ -29,12 +33,12 @@ class ShopComponent extends Component
     public function sortShopItems($field, $type = "ASC"){
         $flag = preg_match("~desc~", $field);
         $field = preg_match("~desc~mi", $field) ? preg_replace("~(\w){1}desc~mi", "",$field) : $field;
-        return Product::orderBy($field,$flag ? "DESC" : $type)->paginate($this->pageSize);
+        return Product::whereBetween("regular_price",[$this->min_price, $this->max_price])->orderBy($field,$flag ? "DESC" : $type)->paginate($this->pageSize);
     }
 
     public function render()
     {
-        $products = $this->sorting === "default" ? Product::paginate($this->pageSize) : $this->sortShopItems($this->sorting);
+        $products = $this->sorting === "default" ? Product::whereBetween("regular_price",[$this->min_price, $this->max_price])->paginate($this->pageSize) : $this->sortShopItems($this->sorting);
         $categories = Category::all();
         return view('livewire.shop-component', ['products'=>$products, "categories"=>$categories])->layout("layouts.base");
     }

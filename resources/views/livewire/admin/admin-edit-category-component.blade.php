@@ -24,10 +24,16 @@
                             <div class="mb-3">
                                 <label for="categoryName" class="form-label">Category name</label>
                                 <input type="text" name="category_name" class="form-control" id="categoryName" aria-describedby="categoryName" wire:model="name" wire:keyup="generateSlug">
+                                @error("name")
+                                    <p class="text-danger">{{$message}}</p>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="categorySlug" class="form-label">Category slug</label>
                                 <input type="text" class="form-control" id="categorySlug" name="category_slug" wire:model="slug">
+                                @error("slug")
+                                    <p class="text-danger">{{$message}}</p>
+                                @enderror
                             </div>
                             <button type="submit" class="btn btn-primary">Update</button>
 
