@@ -52,3 +52,16 @@
         </div>
     </div>
 </div>
+
+{{--@push("scripts")--}}
+{{--    <script>--}}
+{{--        $(() => {--}}
+{{--            const deleteCategoryLink = document.querySelector(".deleteCategoryLink");--}}
+
+
+{{--            deleteCategoryLink.addEventListener("click", function (e){--}}
+{{--                confirm("Are you sure, you want to delete this category ?") || e.stopImmediatePropagation();--}}
+{{--            })--}}
+{{--        })--}}
+{{--    </script>--}}
+{{--@endpush--}}

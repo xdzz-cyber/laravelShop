@@ -47,7 +47,7 @@ class AdminAddProductComponent extends Component
             "sale_price"=>"numeric",
             "SKU"=>"required",
             "stock_status"=>"required",
-            "quantity"=>"requird|numeric",
+            "quantity"=>"required|numeric",
             "image"=>"required|mimes:jpeg,png",
             "category_id" => "required"
         ]);
