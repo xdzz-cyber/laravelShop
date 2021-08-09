@@ -7198,3 +7198,26 @@ nav .hidden{
     text-decoration: line-through;
     padding-left: 10px;
 }
+
+.product-wish{
+    position: absolute;
+    top: 10%;
+    left: 0;
+    right: 30px;
+    z-index: 99;
+    text-align: right;
+    padding-top: 0;
+}
+
+.product-wish .fa{
+    color: #cbcbcb;
+    font-size: 32px;
+}
+
+.product-wish .fa:hover{
+    color: #ff7007;
+}
+
+.fill-heart{
+    color: #ff7007 !important;
+}
