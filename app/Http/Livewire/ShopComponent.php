@@ -35,6 +35,17 @@ class ShopComponent extends Component
         $this->emitTo("wish-list-count-component","refreshComponent");
     }
 
+    public function removeFromWishList($product_id){
+        foreach (Cart::instance("wishlist")->content() as $item){
+            if ($item->id == $product_id){
+                Cart::instance("wishlist")->remove($item->rowId);
+                $this->emitTo("wish-list-count-component", "refreshComponent");
+                return;
+            }
+        }
+
+    }
+
     public function sortShopItems($field, $type = "ASC"){
         $flag = preg_match("~desc~", $field);
         $field = preg_match("~desc~mi", $field) ? preg_replace("~(\w){1}desc~mi", "",$field) : $field;

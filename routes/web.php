@@ -21,6 +21,7 @@ use App\Http\Livewire\Admin\AdminEditHomeSliderComponent;
 use App\Http\Livewire\Admin\AdminAddHomeSliderComponent;
 use App\Http\Livewire\Admin\AdminHomeCategoryComponent;
 use App\Http\Livewire\Admin\AdminSaleComponent;
+use App\Http\Livewire\WishListComponent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,6 +47,8 @@ Route::get("/product/{slug}", DetailsComponent::class)->name("product.details");
 Route::get("/product_category/{category_slug}", CategoryComponent::class)->name("product.category");
 
 Route::get("/search", SearchComponent::class)->name("product.search");
+
+Route::get("/wishlist",WishListComponent::class)->name("product.wishlist");
 
 
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
