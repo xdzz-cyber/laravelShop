@@ -11,13 +11,23 @@ use Livewire\Component;
 class DetailsComponent extends Component
 {
     public $slug;
+    public $quantity;
 
     public function mount($slug){
         $this->slug = $slug;
+        $this->quantity = 1;
+    }
+
+    public function changeQuantity($ShouldIncrease){
+        if ($ShouldIncrease == true){
+            $this->quantity+=1;
+        } else if($this->quantity > 1){
+            $this->quantity-=1;
+        }
     }
 
     public function store($product_id, $product_name, $product_price){
-        Cart::add($product_id,$product_name,1,$product_price)->associate("App\Models\Product");
+        Cart::instance("cart")->add($product_id,$product_name,$this->quantity,$product_price)->associate("App\Models\Product");
         session()->flash("success_message","Item added in Cart");
         return redirect()->route("product.cart");
     }

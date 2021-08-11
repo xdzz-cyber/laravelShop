@@ -7221,3 +7221,8 @@ nav .hidden{
 .fill-heart{
     color: #ff7007 !important;
 }
+
+.saveForLaterCartHeader{
+    border-bottom: 1px solid black;
+    padding-bottom: 2%;
+}
