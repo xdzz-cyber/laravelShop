@@ -96,6 +96,9 @@
                                                     <li class="menu-item">
                                                         <a title="Sale settings" href="{{route('admin.sale')}}">Sale settings</a>
                                                     </li>
+                                                    <li class="menu-item">
+                                                        <a title="All coupons" href="{{route('admin.coupons')}}">All coupons</a>
+                                                    </li>
 													<li class="menu-item">
                                                             <button>Logout</button>
                                                         </li>
