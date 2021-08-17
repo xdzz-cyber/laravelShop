@@ -10,6 +10,8 @@
 			</div>
 			<div class=" main-content-area">
 
+                @if(Cart::instance("cart")->count() > 0)
+
 				<div class="wrap-iten-in-cart">
                     @if(Session::has("success_message"))
                         <div class="alert alert-success">
@@ -95,7 +97,7 @@
 
                         @endif
                         @endif
-						<a class="btn btn-checkout" href="checkout.html">Check out</a>
+						<a class="btn btn-checkout" href="#" wire:click.prevent="checkout">Check out</a>
 						<a class="link-to-shop" href="shop.html">Continue Shopping<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
 					</div>
 
@@ -104,6 +106,13 @@
 						<a class="btn btn-update" href="#">Update Shopping Cart</a>
 					</div>
 				</div>
+                @else
+                    <div class="text-center py-3 px-0">
+                        <h1>Your cart it empty</h1>
+                        <p>Add items to it now</p>
+                        <a href="/shop" class="btn btn-success">Shop now</a>
+                    </div>
+                @endif
 
                 <div class="wrap-iten-in-cart">
                     <h3 class="saveForLaterCartHeader title-box">{{Cart::instance("saveForLater")->count()}} item(s) Saved for later</h3>

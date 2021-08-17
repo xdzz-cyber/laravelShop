@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Coupon;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Cart;
 
@@ -15,6 +16,34 @@ class CartComponent extends Component
     public $subtotalAfterDiscount;
     public $taxAfterDiscount;
     public $totalAfterDiscount;
+
+
+    public function setAmountForCheckout(){
+
+        if (!Cart::instance("cart")->count() > 0){
+            session()->forget("checkout");
+            return;
+        }
+
+        $discount = session()->has("coupon") ? $this->discount : 0;
+        $subtotal = session()->has("coupon") ? $this->subtotalAfterDiscount : Cart::instance("cart")->subtotal();
+        $tax = session()->has("coupon") ? $this->taxAfterDiscount : Cart::instance("cart")->tax();
+        $total = session()->has("coupon") ? $this->totalAfterDiscount : Cart::instance("cart")->total();
+
+        session()->put("checkout", [
+            "discount"=>$discount,
+            "subtotal"=>$subtotal,
+            "tax"=>$tax,
+            "total"=>$total
+        ]);
+    }
+
+    public function checkout(){
+        if (Auth::check()){
+            return redirect()->route("checkout");
+        }
+        return redirect()->route("login");
+    }
 
     public function applyCouponCode(){
         $coupon = Coupon::where("code",$this->couponCode)->where("expiry_date",">=",Carbon::today())->where("cart_value","<=",Cart::instance("cart")->subtotal())->first();
@@ -89,6 +118,7 @@ class CartComponent extends Component
         if (session()->has("coupon")){
             Cart::instance("cart")->subtotal() < session()->get("coupon")['cart_value'] ? session()->forget("coupon") : $this->calculateDiscount();
         }
+        $this->setAmountForCheckout();
         return view('livewire.cart-component')->layout("layouts.base");
     }
 }

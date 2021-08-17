@@ -25,6 +25,7 @@ use App\Http\Livewire\WishListComponent;
 use App\Http\Livewire\Admin\AdminCouponsComponent;
 use App\Http\Livewire\Admin\AdminEditCouponComponent;
 use App\Http\Livewire\Admin\AdminAddCouponComponent;
+use App\Http\Livewire\ThankYouComponent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,7 +44,7 @@ Route::get("/shop", ShopComponent::class);
 
 Route::get("/cart", CartComponent::class)->name("product.cart");
 
-Route::get("/checkout", CheckoutComponent::class);
+Route::get("/checkout", CheckoutComponent::class)->name("checkout");
 
 Route::get("/product/{slug}", DetailsComponent::class)->name("product.details");
 
@@ -52,6 +53,8 @@ Route::get("/product_category/{category_slug}", CategoryComponent::class)->name(
 Route::get("/search", SearchComponent::class)->name("product.search");
 
 Route::get("/wishlist",WishListComponent::class)->name("product.wishlist");
+
+Route::get("/thank-you", ThankYouComponent::class)->name("thank-you");
 
 
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

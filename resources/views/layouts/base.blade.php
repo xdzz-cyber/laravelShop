@@ -100,12 +100,11 @@
                                                         <a title="All coupons" href="{{route('admin.coupons')}}">All coupons</a>
                                                     </li>
 													<li class="menu-item">
+                                                        <form action="{{route('logout')}}" method="post">
+                                                            @csrf
                                                             <button>Logout</button>
+                                                        </form>
                                                         </li>
-                                                    <form action="{{route('logout')}}" method="post">
-                                                        @csrf
-                                                    </form>
-
                                                 </ul>
                                             </li>
                                         @else
