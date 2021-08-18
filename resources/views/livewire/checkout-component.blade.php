@@ -179,8 +179,41 @@
 				<div class="summary summary-checkout">
 					<div class="summary-item payment-method">
 						<h4 class="title-box">Payment Method</h4>
-						<p class="summary-info"><span class="title">Check / Money order</span></p>
-						<p class="summary-info"><span class="title">Credit Cart (saved)</span></p>
+                        @if($paymentMode == "card")
+                        <div class="wrap-address-billing">
+                            @if(Session::has("stripe_error"))
+                                <div class="alert alert-danger" role="alert">{{Session::get("stripe_error")}}</div>
+                            @endif
+                            <p class="row-in-form">
+                                <label for="cardNumber">Card number:</label>
+                                <input type="number" name="cardNumber" value="" placeholder="Your card number" wire:model="cardNumber">
+                                @error("cardNumber")
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
+                            </p>
+                            <p class="row-in-form">
+                                <label for="expiryMonth">Expiry month:</label>
+                                <input type="text" name="expiryMonth" value="" placeholder="MM" wire:model="expiryMonth">
+                                @error("expiryMonth")
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
+                            </p>
+                            <p class="row-in-form">
+                                <label for="expiryYear">Expiry Year:</label>
+                                <input type="text" name="expiryYear" value="" placeholder="YYYY" wire:model="expiryYear">
+                                @error("expiryYear")
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
+                            </p>
+                            <p class="row-in-form">
+                                <label for="cvc">CVC:</label>
+                                <input type="password" id="cvc" name="cvc" value="" placeholder="CVC" wire:model="cvc">
+                                @error("cvc")
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
+                            </p>
+                        </div>
+                        @endif
 						<div class="choose-payment-methods">
 							<label class="payment-method">
 								<input name="payment-method" id="payment-method-bank" value="cod" type="radio" wire:model="paymentMode">
@@ -215,6 +248,7 @@
 				</div>
 
                 </form>
+
 
 			</div><!--end main content area-->
 		</div><!--end container-->
