@@ -1,6 +1,42 @@
 <div>
     <div class="container py-3 px-0">
-
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-md-6">
+                                Order details
+                            </div>
+                            <div class="col-md-6">
+                                <a href="{{route('admin.orders')}}" class="btn btn-success pull-right">All orders</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <th>Order id</th>
+                                <td>{{$order->id}}</td>
+                                <th>Order date</th>
+                                <td>{{$order->created_at}}</td>
+                                <th>Order status</th>
+                                <td>{{$order->status}}</td>
+                                @if($order->status == "delivered")
+                                    <th>Delivery date</th>
+                                    <td>{{$order->delivered_date}}</td>
+                                @elseif($order->status == "canceled")
+                                    <th>Cancel date</th>
+                                    <td>{{$order->canceled_date}}</td>
+                                @endif
+                                <th>Order id</th>
+                                <td>{{$order->id}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
@@ -10,7 +46,7 @@
                                Ordered items
                            </div>
                            <div class="col-md-6">
-                               <a href="{{route('admin.orders')}}" class="btn btn-success pull-right">All orders</a>
+{{--                               <a href="{{route('admin.orders')}}" class="btn btn-success pull-right">All orders</a>--}}
                            </div>
                        </div>
                     </div>
