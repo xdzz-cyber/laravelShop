@@ -1,18 +1,53 @@
 <div>
     <div class="container py-3 px-0">
-
         <div class="row">
             <div class="col-md-12">
+                @if(Session::has("order_message"))
+                    <div class="alert alert-success" role="alert">
+                        {{Session::get("order_message")}}
+                    </div>
+                @endif
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-md-6">
-                                Ordered items
+                                Order details
                             </div>
                             <div class="col-md-6">
-                                <a href="{{route('user.orders')}}" class="btn btn-success pull-right">My orders</a>
+                                <a href="{{route('user.orders')}}" class="customButton btn btn-success pull-right">My orders</a>
+                                @if($order->status == "ordered")
+                                    <a href="#" class="customButton btn btn-warning pull-right" wire:click.prevent="cancelOrder">Cancel order</a>
+                                @endif
                             </div>
                         </div>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <th>Order ID</th>
+                                <td>{{$order->id}}</td>
+                                <th>Order date</th>
+                                <td>{{$order->created_at}}</td>
+                                <th>Order status</th>
+                                <td>{{$order->status}}</td>
+                                @if($order->status == "delivered")
+                                    <th>Delivery date</th>
+                                    <td>{{$order->delivered_date}}</td>
+                                @elseif($order->status == "canceled")
+                                    <th>Canceled date</th>
+                                    <td>{{$order->canceled_date}}</td>
+                                @endif
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Ordered items
                     </div>
                     <div class="panel-body">
 
@@ -32,6 +67,9 @@
                                             <h5>{{$item->quantity}}</h5>
                                         </div>
                                         <div class="price-field sub-total"><p class="price">${{$item->price * $item->quantity}}</p></div>
+                                        @if($order->status == "delivered" && !$item->reviewStatus)
+                                        <div class="price-field sub-total"><p class="price"><a href="{{route('user.review',['order_item_id'=>$item->id])}}">Write a review</a></p></div>
+                                        @endif
                                     </li>
                                 @endforeach
                             </ul>

@@ -7246,3 +7246,7 @@ nav .hidden{
     width: 100%;
     border: 1px solid #e6e6e6;
 }
+
+.customButton{
+    margin: 1% 2%;
+}
