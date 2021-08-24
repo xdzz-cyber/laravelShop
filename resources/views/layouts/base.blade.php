@@ -102,6 +102,12 @@
                                                     <li class="menu-item">
                                                         <a title="All orders" href="{{route('admin.orders')}}">All orders</a>
                                                     </li>
+                                                    <li class="menu-item">
+                                                        <a title="Contact messages" href="{{route('admin.contact')}}">Contact messages</a>
+                                                    </li>
+                                                    <li class="menu-item">
+                                                        <a title="Settings" href="{{route('admin.settings')}}">Settings</a>
+                                                    </li>
 													<li class="menu-item">
                                                         <form action="{{route('logout')}}" method="post">
                                                             @csrf
@@ -198,7 +204,7 @@
 									<a href="/checkout" class="link-term mercado-item-title">Checkout</a>
 								</li>
 								<li class="menu-item">
-									<a href="contact-us.html" class="link-term mercado-item-title">Contact Us</a>
+									<a href="/contactUs" class="link-term mercado-item-title">Contact Us</a>
 								</li>
 							</ul>
 						</div>
