@@ -9,8 +9,7 @@
                                 Add new product
                             </div>
                             <div class="col-md-6">
-                                <a href="{{route('admin.products')}}" class="btn btn-success pull-right">All
-                                    products</a>
+                                <a href="{{route('admin.products')}}" class="btn btn-success pull-right">All products</a>
                             </div>
                         </div>
                     </div>
@@ -144,12 +143,26 @@
                             <div class="form-group">
                                 <label for="image" class="col-md-4 control-label">Product image</label>
                                 <div class="col-md-4">
-                                    <input type="file" id="image" name="image" class="form-control form-control-sm"
-                                           wire:model="image">
+                                    <input type="file" id="image" name="image" class="form-control form-control-sm" wire:model="image">
                                     @if($image)
                                         <img src="{{$image->temporaryUrl()}}" alt="user photo" class="img-fluid w-25">
                                     @endif
                                     @error("image")
+                                    <p class="text-danger">{{$message}}</p>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="images" class="col-md-4 control-label">Product gallery</label>
+                                <div class="col-md-4">
+                                    <input type="file" multiple id="images" name="image" class="form-control form-control-sm" wire:model="images">
+                                    @if($images)
+                                        @foreach($images as $image)
+                                            <img src="{{$image->temporaryUrl()}}" alt="user photo" class="img-fluid w-25">
+                                        @endforeach
+                                    @endif
+                                    @error("images")
                                     <p class="text-danger">{{$message}}</p>
                                     @enderror
                                 </div>

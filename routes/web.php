@@ -35,6 +35,9 @@ use App\Http\Livewire\User\UserChangePasswordComponent;
 use App\Http\Livewire\ContactComponent;
 use App\Http\Livewire\Admin\AdminContactComponent;
 use App\Http\Livewire\Admin\AdminSettingComponent;
+
+/* For testing purposes */
+use App\Http\Controllers\TestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -66,6 +69,13 @@ Route::get("/wishlist",WishListComponent::class)->name("product.wishlist");
 Route::get("/thank-you", ThankYouComponent::class)->name("thank-you");
 
 Route::get("/contactUs", ContactComponent::class)->name("contact");
+
+/* For testing purposes */
+
+Route::middleware(["Test"])->group(function (){
+    Route::get("/test", [TestController::class, "show"])->name("test");
+    Route::post("/test", [TestController::class, "add"])->name("test");
+});
 
 
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
