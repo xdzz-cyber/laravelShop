@@ -78,6 +78,12 @@ Route::middleware(["Test"])->group(function (){
 });
 
 
+Route::prefix("aga")->group(function (){
+    Route::get("/product/{product:regular_price}", function (\App\Models\Product $product){
+       return $product;
+    });
+});
+
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //    return view('dashboard');
 //})->name('dashboard');
