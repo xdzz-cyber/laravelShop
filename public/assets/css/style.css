@@ -7333,3 +7333,16 @@ nav .hidden{
     font-size: 12px;
     border-top: 1px solid #eee;
 }
+
+.mailTable{
+    width: 600px;
+}
+
+.mailTable td{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.mailTable td:last-child{
+    font-size: 22px;
+}
