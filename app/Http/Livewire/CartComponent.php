@@ -119,6 +119,11 @@ class CartComponent extends Component
             Cart::instance("cart")->subtotal() < session()->get("coupon")['cart_value'] ? session()->forget("coupon") : $this->calculateDiscount();
         }
         $this->setAmountForCheckout();
+
+        if (Auth::check()){
+            Cart::instance("cart")->store(Auth::user()->email);
+        }
+
         return view('livewire.cart-component')->layout("layouts.base");
     }
 }

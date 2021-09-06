@@ -7,7 +7,9 @@ use App\Models\HomeCategory;
 use App\Models\HomeSlider;
 use App\Models\Product;
 use App\Models\Sale;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Cart;
 
 class HomeComponent extends Component
 {
@@ -21,6 +23,11 @@ class HomeComponent extends Component
         $numberOfProducts = $category->numberOfProducts;
         $productsOnSale = Product::where("sale_price",">",0)->inRandomOrder()->get()->take(8);
         $saleTimeRecord = Sale::find(1);
+
+        if (Auth::check()){
+            Cart::instance("cart")->restore(Auth::user()->email);
+        }
+
         return view('livewire.home-component', ["sliders"=>$sliders,"latest_products"=>$latest_products, "categories"=>$categories, "numberOfProducts"=>$numberOfProducts, "productsOnSale"=>$productsOnSale, "saleTimeRecord"=>$saleTimeRecord])->layout("layouts.base");
     }
 }

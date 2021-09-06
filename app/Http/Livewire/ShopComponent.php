@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Product;
 use Cart;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Category;
@@ -56,6 +57,11 @@ class ShopComponent extends Component
     {
         $products = $this->sorting === "default" ? Product::whereBetween("regular_price",[$this->min_price, $this->max_price])->paginate($this->pageSize) : $this->sortShopItems($this->sorting);
         $categories = Category::all();
+
+        if(Auth::check()){
+            Cart::instance("cart")->store(Auth::user()->email);
+        }
+
         return view('livewire.shop-component', ['products'=>$products, "categories"=>$categories])->layout("layouts.base");
     }
 }
